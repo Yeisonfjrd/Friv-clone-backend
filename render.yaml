@@ -1,0 +1,27 @@
+services:
+  - type: web
+    name: friv-clone-api
+    runtime: java
+    plan: free
+    region: ohio
+    buildCommand: ./mvnw clean package -DskipTests
+    startCommand: java -jar target/*.jar
+    envVars:
+      - key: SPRING_PROFILES_ACTIVE
+        value: prod
+      - key: SERVER_PORT
+        value: 8080
+      - key: JAVA_OPTS
+        value: "-Xmx512m -Xms256m"
+    buildFilter:
+      paths:
+      - backend/**
+    healthCheckPath: /actuator/health
+    disk:
+      name: tmp
+      mountPath: /tmp
+      sizeGB: 0.5
+    autoDeploy: true
+    numInstances: 1
+    env: java
+    runtimeVersion: "17" 
