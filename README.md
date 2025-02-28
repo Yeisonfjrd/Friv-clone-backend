@@ -105,7 +105,7 @@ Este proyecto está bajo la Licencia MIT - ver el archivo [LICENSE.md](LICENSE.m
 
 ## ✨ Autores
 
-* **Tu Nombre** - *Trabajo Inicial* - [TuUsuario](https://github.com/TuUsuario)
+* **Yeison Fajardo** - *Trabajo Inicial* - [TuUsuario](https://github.com/Yeisonfjrd)
 
 ## 🎉 Agradecimientos
 
