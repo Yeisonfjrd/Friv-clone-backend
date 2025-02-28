@@ -4,14 +4,8 @@ services:
     runtime: java
     plan: free
     region: ohio
-    buildCommand: |
-      curl -s "https://get.sdkman.io" | bash
-      source "$HOME/.sdkman/bin/sdkman-init.sh"
-      sdk install java 17.0.9-tem
-      ./mvnw clean package -DskipTests
-    startCommand: |
-      source "$HOME/.sdkman/bin/sdkman-init.sh"
-      java -jar target/*.jar
+    buildCommand: ./mvnw clean package -DskipTests
+    startCommand: java -jar target/*.jar
     envVars:
       - key: SPRING_PROFILES_ACTIVE
         value: prod
@@ -19,10 +13,6 @@ services:
         value: 8080
       - key: JAVA_OPTS
         value: "-Xmx512m -Xms256m"
-      - key: JAVA_HOME
-        value: /opt/java/openjdk
-      - key: PATH
-        value: /opt/java/openjdk/bin:${PATH}
     buildFilter:
       paths:
       - backend/**
@@ -34,4 +24,4 @@ services:
     autoDeploy: true
     numInstances: 1
     env: java
-    runtimeVersion: "17" 
+    runtimeVersion: "17"
