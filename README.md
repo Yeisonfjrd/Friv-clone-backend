@@ -28,7 +28,7 @@ Este es el backend del proyecto Friv Clone, una recreación moderna del clásico
 
 1. Clonar el repositorio:
 ```bash
-git clone https://github.com/tu-usuario/friv-clone-backend.git
+git clone https://github.com/yeisonfjrd/friv-clone-backend.git
 cd friv-clone-backend
 ```
 
@@ -105,7 +105,7 @@ Este proyecto está bajo la Licencia MIT - ver el archivo [LICENSE.md](LICENSE.m
 
 ## ✨ Autores
 
-* **Tu Nombre** - *Trabajo Inicial* - [TuUsuario](https://github.com/TuUsuario)
+* **Yeison Fajardo** - *Trabajo Inicial* - [YeisonFjrd](https://github.com/Yeisonfjrd)
 
 ## 🎉 Agradecimientos
 
