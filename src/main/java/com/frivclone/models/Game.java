@@ -26,10 +26,8 @@ public class Game {
     
     private String category;
 
-    // Constructor vacío necesario para JPA
     public Game() {}
 
-    // Getters y Setters
     public Long getId() {
         return id;
     }
