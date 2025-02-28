@@ -7,6 +7,8 @@ services:
     buildCommand: ./mvnw clean package -DskipTests
     startCommand: java -jar target/*.jar
     envVars:
+      - key: JAVA_VERSION
+        value: "17"
       - key: SPRING_PROFILES_ACTIVE
         value: prod
       - key: SERVER_PORT
