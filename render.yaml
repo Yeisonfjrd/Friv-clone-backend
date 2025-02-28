@@ -4,8 +4,8 @@ services:
     runtime: java
     plan: free
     region: ohio
-    buildCommand: cd backend && ./mvnw clean package -DskipTests
-    startCommand: java -jar backend/target/*.jar
+    buildCommand: ./mvnw clean package -DskipTests
+    startCommand: java -jar target/*.jar
     envVars:
       - key: SPRING_PROFILES_ACTIVE
         value: prod
@@ -13,9 +13,6 @@ services:
         value: 8080
       - key: JAVA_OPTS
         value: "-Xmx512m -Xms256m"
-    buildFilter:
-      paths:
-      - backend/**
     healthCheckPath: /actuator/health
     disk:
       name: tmp
