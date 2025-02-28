@@ -4,8 +4,8 @@ services:
     runtime: java
     plan: free
     region: ohio
-    buildCommand: ./mvnw clean package -DskipTests
-    startCommand: java -jar target/*.jar
+    buildCommand: cd backend && ./mvnw clean package -DskipTests
+    startCommand: java -jar backend/target/*.jar
     envVars:
       - key: SPRING_PROFILES_ACTIVE
         value: prod
