@@ -6,9 +6,9 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.MediaTypeFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -83,9 +83,16 @@ public class GameController {
     public ResponseEntity<Resource> serveFile(@PathVariable String filename) {
         try {
             Resource file = new ClassPathResource("static/images/games/" + filename);
+            if (!file.exists()) {
+                return ResponseEntity.notFound().build();
+            }
+
+            MediaType mediaType = MediaTypeFactory.getMediaType(filename)
+                    .orElse(MediaType.APPLICATION_OCTET_STREAM);
+
             return ResponseEntity.ok()
-                .header(HttpHeaders.CONTENT_TYPE, MediaType.IMAGE_JPEG_VALUE)
-                .body(file);
+                    .contentType(mediaType)
+                    .body(file);
         } catch (Exception e) {
             return ResponseEntity.notFound().build();
         }
