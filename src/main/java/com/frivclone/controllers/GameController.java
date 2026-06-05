@@ -83,9 +83,13 @@ public class GameController {
     public ResponseEntity<Resource> serveFile(@PathVariable String filename) {
         try {
             Resource file = new ClassPathResource("static/images/games/" + filename);
-            return ResponseEntity.ok()
-                .header(HttpHeaders.CONTENT_TYPE, MediaType.IMAGE_JPEG_VALUE)
-                .body(file);
+            if (file.exists()) {
+                return ResponseEntity.ok()
+                    .header(HttpHeaders.CONTENT_TYPE, MediaType.IMAGE_JPEG_VALUE)
+                    .body(file);
+            } else {
+                return ResponseEntity.notFound().build();
+            }
         } catch (Exception e) {
             return ResponseEntity.notFound().build();
         }
