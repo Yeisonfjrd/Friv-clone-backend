@@ -15,6 +15,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
@@ -130,5 +131,12 @@ class GameControllerTest {
     void shouldReturn404WhenRequestingNonExistentImage() throws Exception {
         mockMvc.perform(get("/api/games/images/games/doesnotexist.jpg"))
                 .andExpect(status().isNotFound());
+    }
+
+    @Test
+    void shouldServeExistingImageWithDetectedContentType() throws Exception {
+        mockMvc.perform(get("/api/games/images/games/pacman.webp"))
+                .andExpect(status().isOk())
+                .andExpect(header().string(HttpHeaders.CONTENT_TYPE, "image/webp"));
     }
 }
