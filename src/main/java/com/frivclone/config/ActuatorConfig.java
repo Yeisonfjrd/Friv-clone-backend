@@ -1,4 +1,4 @@
-package com.friv.clone.config;
+package com.frivclone.config;
 
 import org.springframework.boot.actuate.health.Health;
 import org.springframework.boot.actuate.health.HealthIndicator;
