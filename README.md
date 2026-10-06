@@ -12,7 +12,7 @@ GET    /api/games/images/games/{file}     cover images, content type from the ex
 GET    /actuator/health                   used by Railway's health check
 ```
 
-Controller → service → `JpaRepository`, nothing clever.
+Controller → service → `JpaRepository`, nothing clever. Swagger UI is on `/swagger-ui.html` (springdoc).
 
 ## Tracing
 
