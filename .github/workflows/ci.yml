@@ -30,3 +30,21 @@ jobs:
 
       - name: Build and test
         run: ./mvnw clean verify
+
+  # Si fallan los tests, ai-fix le pide un arreglo a un modelo local y abre un PR solo si todos pasan.
+  # https://github.com/Yeisonfjrd/ai-fix-maven-plugin
+  ai-fix:
+    needs: build
+    if: >-
+      failure()
+      && !startsWith(github.head_ref || github.ref_name, 'ai-fix/')
+      && (github.event_name == 'push' || github.event.pull_request.head.repo.full_name == github.repository)
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref || github.ref_name }}
+      - uses: Yeisonfjrd/ai-fix-maven-plugin@main
